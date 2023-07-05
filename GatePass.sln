@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "GatePass", "GatePass\GatePass.pyproj", "{CE3FA1CA-37B3-423C-8B4B-251E1CC1E7F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE3FA1CA-37B3-423C-8B4B-251E1CC1E7F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3FA1CA-37B3-423C-8B4B-251E1CC1E7F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3FA1CA-37B3-423C-8B4B-251E1CC1E7F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3FA1CA-37B3-423C-8B4B-251E1CC1E7F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31444BB9-718B-4EC1-BBD8-D0494465C269}
+	EndGlobalSection
+EndGlobal

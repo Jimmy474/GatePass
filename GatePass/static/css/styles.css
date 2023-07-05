@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.Card {
+    height: fit-content;
+    background-color: var(--Secondary-Color);
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    box-sizing: border-box;
+}
+
+label {
+    color: var(--Primary-Color-Dark);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.Extras{
+    margin : 10px;
+}
+
+.RadioGroup label {
+    color: var(--Primary-Color-Dark);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.RadioGroup {
+    height: fit-content;
+    width: fit-content;
+    margin: 5px;
+}
+
+input[type=text] {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--Primary-Color);
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid var(--Primary-Color-Light);
+    -webkit-transition: var(--Transition-Time);
+    transition: var(--Transition-Time);
+    outline: none;
+}
+
+input[type=text]:focus{
+    border : 2px solid var(--Primary-Color);
+}
+
+input[type=radio] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    background-color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--Primary-Color-Light);
+}
+
+input[type="radio"]:checked {
+    background-color: var(--Primary-Color);
+}
+
+input[type=button] {
+    height : fit-content;
+    width : fit-content;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: var(--Primary-Color);
+    background-color: var(--Primary-Color-Dark);
+    border: none;
+    box-shadow: var(--Primary-Color) 3px 3px;
+    transition: var(--Transition-Time);
+    outline: none;
+}
+
+input[type=button]:hover {
+    color: var(--Primary-Color-Light);
+    background-color: var(--Primary-Color);
+    box-shadow: var(--Primary-Color-Dark) 3px 3px;
+}
+
+
+input[type=button]:active {
+    box-shadow : var(--Primary-Color-Dark) 1px 1px;
+}
+
+
+.Center {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ImageContainer {
+    height: 50vw;
+    width: 50vw;
+    max-height: 300px;
+    max-width: 300px;
+    box-sizing: border-box;
+    background-color: var(--Primary-Color-Light);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Main {
+    height: fit-content;
+    width: 100vw;
+    max-width: 100%;
+    background-color: var(--Primary-Color-Light);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px;
+    box-sizing: border-box;
+}

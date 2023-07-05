@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Visitor Form</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Variables.css') }}" />
+    <script src="{{ url_for('static', filename='js/Script.js') }}"></script>
+</head>
+<body>
+    <h1>Visitor Form</h1>
+    <form id="form" method="post" action="/upload" enctype="multipart/form-data">
+        <div class="Main">
+
+            <div class="Card">
+                <label for="visitor_photo">Add Photo</label>
+                <div class="Center">
+                    <div class="ImageContainer" id="imageContainer"></div>
+                    <input id="selectImageButton" type="button" value="Select Image" onclick="SelectImage()">
+                    <input id="imageInput" name="image" type="file" accept="image/*" capture="camera" style="display: none;" onchange="changeImage()" required>
+                </div>
+            </div>
+
+            <div class="Card">
+                <label for="visitor_name">Name</label>
+                <input type="text" id="visitor_name" name="visitor_name" placeholder="Name">
+            </div>
+
+            <div class="Card">
+                <label for="coming_from">Coming From</label>
+                <input type="text" id="coming_from" name="coming_from" placeholder="Place/Company">
+            </div>
+
+            <div class="Card">
+                <label for="adhar_number">Adhar Card Number</label>
+                <input type="text" id="adhar_number" name="adhar_number" placeholder="0000 0000 0000">
+            </div>
+
+            <div class="Card">
+                <label for="mobile_number">Mobile Number</label>
+                <input type="text" id="mobile_number" name="mobile_number" placeholder="0000000000">
+            </div>
+
+            <div class="Card">
+                <label for="token_number">Mobile Token Number</label>
+                <input type="text" id="token_number" name="token_number" placeholder="000">
+            </div>
+
+            <div class="Card">
+                <label for="helmet_number">Helmet Number</label>
+                <input type="text" id="helmet_number" name="helmet_number" placeholder="000">
+            </div>
+
+            <div class="Card">
+                <label for="requested_person">Requested Person</label>
+                <input type="text" id="requested_person" name="requested_person" placeholder="Name">
+            </div>
+
+            <div class="Card">
+                <label for="purpose">Purpose of Visit</label>
+                <div class="Extras">
+                    <div class="RadioGroup"><input type="radio" id="official" name="purpose" value="Official"><label>Official</label></div>
+                    <div class="RadioGroup"><input type="radio" id="personal" name="purpose" value="Personal"><label>Personal</label></div>
+                    <div class="RadioGroup"><input type="radio" id="construction" name="purpose" value="Construction"><label>Construction</label></div>
+                </div>
+            </div>
+
+            <div class="Center"><input type="button" value="Generate Pass" onclick="Generate()"></div>
+        </div>
+    </form>
+</body>
+</html>

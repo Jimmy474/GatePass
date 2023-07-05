@@ -1,0 +1,10 @@
+:root {
+    --Primary-Color: #FF0000;
+    --Primary-Color-Dark: #800000;
+    --Primary-Color-Light: #FFCCCC;
+    --Secondary-Color: #ffeaea;
+    --Secondary-Color-Dark: #400000;
+    --Transition-Time: 0.3s;
+    --Default_Margin: 10px;
+    --Default_Padding: 10px;
+}
