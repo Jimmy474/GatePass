@@ -36,7 +36,9 @@
     <Content Include="static\css\styles.css" />
     <Content Include="static\css\Stylesheet_Pass.css" />
     <Content Include="static\css\Variables.css" />
+    <Content Include="static\js\FirebaseFetcher.js" />
     <Content Include="static\js\Script.js" />
+    <Content Include="static\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
