@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const dbRef = app.database().ref();
 
 function FetchData() {
-// Read data from the database
+    // Read data from the database
     dbRef.child('GatePassNumber').get().then((snapshot) => {
         if (snapshot.exists()) {
             const usersData = snapshot.val();
