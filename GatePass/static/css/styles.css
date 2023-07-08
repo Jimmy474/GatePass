@@ -71,30 +71,28 @@ input[type="radio"]:checked {
 }
 
 input[type=button] {
-    height : fit-content;
-    width : fit-content;
+    height: fit-content;
+    width: fit-content;
     padding: 10px;
     font-size: 16px;
     box-sizing: border-box;
     border-radius: 10px;
-    color: var(--Primary-Color);
-    background-color: var(--Primary-Color-Dark);
+    color: var(--Primary-Color-Light);
+    background-color: var(--Primary-Color);
+    box-shadow: var(--Primary-Color-Dark) 3px 3px;
     border: none;
-    box-shadow: var(--Primary-Color) 3px 3px;
     transition: var(--Transition-Time);
     outline: none;
 }
 
-input[type=button]:hover {
-    color: var(--Primary-Color-Light);
-    background-color: var(--Primary-Color);
-    box-shadow: var(--Primary-Color-Dark) 3px 3px;
-}
+    input[type=button]:hover {
+        color: var(--Primary-Color-dark);
+    }
 
 
-input[type=button]:active {
-    box-shadow : var(--Primary-Color-Dark) 1px 1px;
-}
+    input[type=button]:active {
+        box-shadow: var(--Primary-Color-Dark) 1px 1px;
+    }
 
 
 .Center {
@@ -117,6 +115,7 @@ input[type=button]:active {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content : center;
 }
 
 .Main {

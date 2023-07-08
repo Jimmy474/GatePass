@@ -4,10 +4,12 @@
     <title>Visitor Form</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Variables.css') }}" />
-    <script src="{{ url_for('static', filename='js/FirebaseFetcher.js') }}"></script>
     <script src="{{ url_for('static', filename='js/Script.js') }}"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-check.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/FirebaseFetcher.js') }}"></script>
 </head>
 <body>
     <h1>Visitor Form</h1>
@@ -19,7 +21,8 @@
                 <div class="Center">
                     <div class="ImageContainer" id="imageContainer"></div>
                     <input id="selectImageButton" type="button" value="Select Image" onclick="SelectImage()">
-                    <input id="imageInput" name="image" type="file" accept="image/*" capture="camera" style="display: none;" onchange="changeImage()" required>
+                    <input id="imageInput" name="image" type="file" accept="image/*" style="display: none;" onchange="changeImage()" capture>
+                    <input type="text" id="pass_number" name="pass_number" style="display: none;">
                 </div>
             </div>
 
@@ -68,7 +71,6 @@
             </div>
 
             <div class="Center"><input type="button" value="Generate Pass" onclick="Generate()"></div>
-            <div class="Center"><input type="button" value="Test" onclick="FetchData()"></div>
         </div>
     </form>
 </body>

@@ -4,55 +4,71 @@
     <title>Pass Details</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Stylesheet_Pass.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Variables.css') }}" />
+    <script>
+        function printDiv() {
+            const printContents = document.getElementById("MainDiv").innerHTML;
+            const originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
 </head>
 <body>
     <form id="form" method="post" action="/Pass" enctype="multipart/form-data">
-        <!-- Form fields and elements -->
-        <div class="Main">
-            <div class="Card2">
-                <img class="Logo" src="static/Logo.png" />
-                <label><strong>Colourtex Industries Private Limited.</strong></label>
+        <div class="Center">
+            <div id="MainDiv" class="Main">
+                <div class="Card2">
+                    <img class="Logo" src="static/Logo.png" />
+                    <label><H2><strong>Colourtex Industries Private Limited.</strong></H2></label>
+                </div>
+                <div class="Card2">
+                    <label><strong style="font-size:24px">VISITOR GATE PASS</strong></label>
+                </div>
+                <div class="Card2">
+                    <div class="ImageContainer">
+                        <img class="UserImage" src="{{image_url}}" />
+                    </div>
+                </div>
+                <div class="Card2">
+                    <label><strong>Pass No :- </strong> {{ pass_number}}</label>
+                    <label><strong>Date :- </strong> {{current_date}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Helmet No :- </strong> {{helmet_number}}</label>
+                    <label><strong>Mobile Ticket No. :- </strong> {{token_number}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Name Of Visitor :- </strong> {{visitor_name}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Coming From :- </strong> {{coming_from}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>To See Mr / Mrs :- </strong> {{requested_person}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Purpose Of Visit :- </strong> {{purpose}}</label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Time In :- </strong> {{time_in}}</label>
+                    <label><strong>Time Out :- __________</strong></label>
+                </div>
+                <div class="Card2">
+                    <label><strong>Visitor Declaration : </strong> I Have Gone Through Visitor Safety instruction Provided By Security And Understood Safety Precautions To Take.</label>
+                </div>
+                <div class="Card2"></div>
+                <div class="Card2"></div>
+                <div class="Card2"></div>
+                <div class="Card2">
+                    <label><strong>Sign of Security</strong></label>
+                    <label><strong>Sign of Visitor</strong></label>
+                    <label><strong>Sign of Person Visited</strong></label>
+                </div>
             </div>
-            <div class="Card2">
-                <label><strong>VISITOR GATE PASS</strong></label>
-            </div>
-            <div class="Card2">
-                <img src="{{image_url}}" />
-            </div>
-            <div class="Card2">
-                <label><strong>Pass No :- </strong> {{ pass_number}}</label>
-                <label><strong>Date :- </strong> {{current_date}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>Helmet No :- </strong> {{helmet_number}}</label>
-                <label><strong>Mobile Ticket No. :- </strong> {{token_number}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>Name Of Visitor :- </strong> {{visitor_name}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>Coming From :- </strong> {{coming_from}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>To See Mr / Mrs :- </strong> {{requested_person}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>Purpose Of Visit :- </strong> {{purpose}}</label>
-            </div>
-            <div class="Card2">
-                <label><strong>Time In :- </strong> {{time_in}}</label>
-                <label><strong>Time Out :- __________</strong></label>
-            </div>
-            <div class="Card2">
-                <label><strong>Visitor Declaration : </strong> I Have Gone Through Visitor Safety instruction Provided By Security And Understood Safety Precautions To Take.</label>
-            </div>
-            <div class="Card2"></div>
-            <div class="Card2"></div>
-            <div class="Card2">
-                <label><strong>Sign of Security</strong></label>
-                <label><strong>Sign of Visitor</strong></label>
-                <label><strong>Sign of Person Visited</strong></label>
-            </div>
+            <input type="button" value="Print Pass" onclick="printDiv()">
         </div>
     </form>
 </body>

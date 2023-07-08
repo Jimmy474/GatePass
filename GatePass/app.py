@@ -16,7 +16,7 @@ def upload():
     file = request.files['image']
     if file:
         # Save the uploaded file
-        file.save('static/uploads/image.jpg')
+        file.save('static/Image/image.jpg')
         return 'Image uploaded successfully!'
     else:
         return 'No file selected.'
@@ -27,7 +27,7 @@ def GeneratePass():
 
     image_file = request.files['image']
     filename = 'image.jpg'
-    filepath = os.path.join('static', 'uploads', filename)
+    filepath = os.path.join('static', 'Image', filename)
 
     image_url = '/' + filepath
 
@@ -42,14 +42,7 @@ def GeneratePass():
     time_in = datetime.now().strftime("%H:%M")
     current_date = datetime.now().strftime("%d/%m/%Y")
 
-    with open('data.json', 'r') as file:
-        json_data = json.load(file)
-
-    pass_number = json_data['Latest_Pass_Number']
-    json_data['Latest_Pass_Number'] = pass_number + 1
-
-    with open('data.json', 'w') as file:
-        json.dump(json_data, file)
+    pass_number = request.form.get('pass_number')
 
     return render_template('pass.html', image_url=image_url, 
                            visitor_name=visitor_name, 

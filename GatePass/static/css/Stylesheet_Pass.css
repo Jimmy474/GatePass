@@ -5,18 +5,21 @@ body {
 
 .Main {
     height: fit-content;
-    width: 600px;
-    background-color: var(--Primary-Color-Light);
+    width: 800px;
+    background-color: white;
+    border : 2px solid var(--Primary-Color);
     border-radius: 20px;
     display: inline-block;
     padding: var(--Default_Padding);
     box-sizing: border-box;
+    align-self:center;
 }
 
 .Card2 {
     height: fit-content;
     box-sizing: border-box;
-    margin : var(--Default_Margin);
+/*    border : 2px solid;*/
+    margin : 0px;
     padding : var(--Default_Padding);
     display : flex;
     justify-content:space-around;
@@ -28,7 +31,58 @@ label {
     align-self:center;
 }
 
+.Center {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .Logo{
     height : auto;
-    width : 100px;
+    width : 150px;
+}
+
+.UserImage{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.ImageContainer {
+    height: 300px;
+    width: 300px;
+    box-sizing: border-box;
+    border : 2px solid var(--Primary-Color-Dark);
+    border-radius: 10px;
+    margin: var(--Default_Margin);
+    padding: var(--Default_Padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=button] {
+    height: fit-content;
+    width: fit-content;
+    padding: var(--Default_Padding);
+    margin: var(--Default_Margin);
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: var(--Primary-Color-Light);
+    background-color: var(--Primary-Color);
+    box-shadow: var(--Primary-Color-Dark) 3px 3px;
+    border: none;
+    transition: var(--Transition-Time);
+    outline: none;
+}
+
+input[type=button]:hover {
+    color: var(--Primary-Color-dark);
+}
+
+
+input[type=button]:active {
+    box-shadow: var(--Primary-Color-Dark) 1px 1px;
 }
