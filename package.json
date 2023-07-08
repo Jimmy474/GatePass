@@ -1,0 +1,21 @@
+{
+  "name": "GatePass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jimmy474/GatePass"
+  },
+  "author": "Jimmy474",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jimmy474/GatePass/issues"
+  },
+  "homepage": "https://github.com/Jimmy474/GatePass#readme",
+  "dependencies": {
+  }
+}
