@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Small Pass</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="./static/Logo3.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="module" src="{{ url_for('static', filename='js/FirebaseFetcher.js') }}"></script>
+    <style>
+        .ImageBorder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50% !important;
+            outline: 3px solid #ddf0ff;
+            mix-blend-mode: difference;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" method="post" action="/Pass" enctype="multipart/form-data">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-print-none">
+            <a class="navbar-brand mx-3" href="#">
+                <img src="./static/Logo2.png" width="35" height="35" class="d-inline-block align-top" alt="">
+                <span class="h3 text-danger">Thank You For Visiting Colourtex Industries</span>
+            </a>
+        </nav>
+        <div id="MainDiv" class="container mx-auto rounded d-flex flex-wrap justify-content-center m-3">
+
+            <div class="card m-3 Pass" style="height: 38.8rem; width: 26.3rem; border-radius: 2em; ">
+
+                <img class="card-img" src="./static/SmallPassFront.png" alt="Photo" style="border-radius: 2em;">
+
+                <div class="card-img-overlay">
+                    <div class="row justify-content-between">
+                        <div class="col justify-content-evenly">
+                            <h2 id="pass_number" class="text-danger text-start px-2">{{pass_number}}</h2>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <img src="./static/Logo3.png" width="50" height="50" class="d-inline-block align-top" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-img-overlay">
+                    <div class="row justify-content-between">
+                        <div class="col justify-content-evenly">
+                            <h2 class="text-danger text-center px-2 text-uppercase">{{purpose}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-img-overlay" style="padding:2.5rem;">
+
+                    <div style="height:7rem;"></div>
+
+                    <div class="card border-0 bg-transparent">
+                        <div class="card bg-transparent p-1 mx-auto rounded-circle border-3 ImageBorder" style="height:12rem;width:12rem;">
+                            <div class="card mx-auto my-auto rounded-circle border-0" style="height:11rem;width:11rem;overflow:hidden;">
+                                <img id="user_img" class="w-100 h-100" style="object-fit:contain;max-width:11rem;" src="{{image_url}}" alt="Add Photo">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row h3 mb-2">
+                                <div class="col text-center text-capitalize">
+                                    <span>{{visitor_name}}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2 fs-5 text-center">
+                                <div class="col">
+                                    <span>Visiting From </span>
+                                    <span class="fw-bold text-capitalize">{{coming_from}}</span>
+                                    <span> To See </span>
+                                    <span class="fw-bold text-capitalize">{{requested_person}}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-0 fs-6 text-center">
+                                <div class="col">
+                                    <span class="fw-bold text-capitalize">Date :- </span>
+                                    <span>{{current_date}}</span>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold text-capitalize">Time :- </span>
+                                    <span>{{time_in}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card m-3 Pass" style="height: 38.8rem; width: 26.3rem; border-radius: 2em; ">
+
+                <img class="card-img" src="./static/SmallPassFront.png" style="transform: scaleX(-1); border-radius: 2em;" alt="Photo">
+
+                <div class="card-img-overlay">
+                    <div class="row justify-content-between">
+                        <div class="col justify-content-evenly">
+                            <h2 class="text-danger text-start px-2">{{pass_number}}</h2>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <img src="./static/Logo3.png" width="50" height="50" class="d-inline-block align-top" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-img-overlay">
+                    <div class="row justify-content-between">
+                        <div class="col justify-content-evenly">
+                            <h2 class="text-danger text-center px-2 text-uppercase">{{purpose}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-img-overlay" style="padding:2.5rem;">
+
+                    <div style="height:19rem;"></div>
+
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body">
+
+                            <div class="row mb-0 fs-5">
+                                <div class="col">
+                                    <span class="fw-bold">Mobile No:- </span>
+                                    <span class="fs-6">{{mobile_number}}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-0 fs-5">
+                                <div class="col">
+                                    <span class="fw-bold">Aadhar No:- </span>
+                                    <span class="fs-6">{{adhar_number}}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-0 fs-5">
+                                <div class="col">
+                                    <span class="fw-bold">Helmt No:- </span>
+                                    <span class="fs-6">{{helmet_number}}</span>
+                                </div>
+                                <div class="col">
+                                    <span class="fw-bold">Token No:- </span>
+                                    <span class="fs-6">{{token_number}}</span>
+                                </div>
+                            </div>
+                            <div class="row mb-0 fs-5">
+                                <img src="./static/Ppe-kit.png" class="d-inline-block align-top" alt="" style="height:2.5rem;">
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container mx-auto justify-content-center m-3">
+            <div class="text-center text-danger h1">Please Collect Your Pass From Security Office</div>
+        </div>
+    </form>
+    <script type="module" src="{{ url_for('static', filename='js/Script.js') }}"></script>
+</body>
+</html>

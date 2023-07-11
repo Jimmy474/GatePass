@@ -1,5 +1,3 @@
-let imageUploaded = false;
-
 function SelectImage() {
     const imageInput = document.getElementById('imageInput');
     imageInput.click();
@@ -7,55 +5,37 @@ function SelectImage() {
 
 function changeImage() {
     const imageInput = document.getElementById('imageInput');
-    const imageContainer = document.getElementById('imageContainer');
     const file = imageInput.files[0];
 
-    //console.dir(imageInput.files[0]);
-    //if (imageInput.files[0].type.indexOf("image/") > -1) {
-    //    let img = document.createElement('img');
-    //    img.src = window.URL.createObjectURL(imageInput.files[0]);
-    //    img.style.maxWidth = '100%';
-    //    img.style.maxHeight = '100%';
-    //    img.style.objectFit = 'contain';
-    //    imageContainer.innerHTML = '';
-    //    imageContainer.appendChild(img);
-    //}
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.style.maxWidth = '100%';
-            img.style.maxHeight = '100%';
-            img.style.objectFit = 'contain';
-            img.style.alignContent = 'Center';
-            imageContainer.innerHTML = '';
-            imageContainer.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-
-        // Create a FormData object to store the image file
-        const formData = new FormData();
-        formData.append('image', file);
-
-        // Send the AJAX request to the Flask server
-        fetch('/upload', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data); // Handle the server response
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-
+    console.dir(file);
+    if (file.type.indexOf("image/") > -1) {
+        let img = document.getElementById("user_img");
+        img.src = window.URL.createObjectURL(file);
+        document.getElementById("img_url").value = img.src;
+        console.log(document.getElementById("img_url").value);
     }
 }
 
+function formatNumber(input) {
+    let number = input.value.replace(/\D/g, '');
+
+    number = number.slice(0, 12);
+
+    let formattedNumber = '';
+    for (let i = 0; i < number.length; i++) {
+        if (i > 0 && i % 4 === 0) {
+            formattedNumber += ' ';
+        }
+        formattedNumber += number.charAt(i);
+    }
+
+    input.value = formattedNumber;
+}
+
 function Generate() {
+
+    const btn = document.getElementById("GenerateButton");
+    const spn = document.getElementById("Spinner");
 
     var name = document.getElementById("visitor_name");
     var comingFrom = document.getElementById("coming_from");
@@ -64,115 +44,116 @@ function Generate() {
     var mobileToken = document.getElementById("token_number");
     var helmet = document.getElementById("helmet_number");
     var requestedName = document.getElementById("requested_person");
-    var purpose = document.getElementsByName("purpose");
+    var purpose = document.getElementById("purpose");
+    var imageInput = document.getElementById('imageInput');
+    var photoError = document.getElementById('photo_error');
+    var file = imageInput.files[0];
+
+    NeutralizeField(name);
+    NeutralizeField(comingFrom);
+    NeutralizeField(adhar);
+    NeutralizeField(mobileNum);
+    NeutralizeField(mobileToken);
+    NeutralizeField(helmet);
+    NeutralizeField(requestedName);
+    NeutralizeField(purpose);
+    NeutralizeField(imageInput);
 
     const namePattern = /^[A-Za-z\s]+$/;
     const mobilePattern = new RegExp(`^[0-9]{10}$`);
     const adharPattern = /^\d{4} \d{4} \d{4}$/;
     const numberPattern = /^[0-9]+$/;
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
 
-    const imageInput = document.getElementById('imageInput');
-    const file = imageInput.files[0];
+
 
     if (!file) {
-        alert('No image selected. Please choose an image file.');
+        imageInput.classList.add("is-invalid");
+        photoError.textContent = "Please Upload Your Photo";
         return;
+    } else if (!allowedTypes.includes(file.type)) {
+        imageInput.classList.add("is-invalid");
+        photoError.textContent = "Image Type Is Not Allowed.Valid Types Are JPEG/PNG";
+        return;
+    } else if (file.size > maxSizeInBytes) {
+        imageInput.classList.add("is-invalid");
+        photoError.textContent = "Image Size Is Too Large. Max Allowed Size Is 2 MB"
+        return;
+    } else {
+        imageInput.classList.add("is-valid");
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png'];
-    const maxSizeInBytes = 3 * 1024 * 1024; // 5MB
+    if (validatePatternField(name, namePattern)) return;
+    if (validateTextField(comingFrom)) return;
+    if (validatePatternField(adhar, adharPattern)) return;
+    if (validatePatternField(mobileNum, mobilePattern)) return;
+    if (validatePatternField(mobileToken, numberPattern)) return;
+    if (validatePatternField(helmet, numberPattern)) return;
 
-    if (!allowedTypes.includes(file.type)) {
-        alert('Invalid image type. Please choose a JPEG or PNG image.');
+    if (requestedName.value === "") {
+        requestedName.classList.add("is-invalid");
         return;
+    } else {
+        requestedName.classList.add("is-valid");
     }
 
-    if (file.size > maxSizeInBytes) {
-        alert('Image file size is too large. Please choose a smaller image.');
+    if (purpose.value === "") {
+        purpose.classList.add("is-invalid");
         return;
+    } else {
+        purpose.classList.add("is-valid");
     }
 
-    if (name.value.trim() === '') {
-        alert("Enter Your Name");
-        name.focus();
-        return;
-    } else if (!namePattern.test(name.value.trim())) {
-        alert("Enter Valid Name");
-        name.focus();
-        return;
-    }
-
-    if (comingFrom.value.trim() === '') {
-        alert("Enter Place");
-        comingFrom.focus();
-        return;
-    }
-
-    if (adhar.value.trim() === '') {
-        alert("Enter Your Adhar Card Number");
-        adhar.focus();
-        return;
-    } else if (!adharPattern.test(adhar.value.trim())) {
-        alert("Enter Valid Adhar Card Number");
-        adhar.focus();
-        return;
-    }
-
-    if (mobileNum.value.trim() === '') {
-        alert("Enter Your Mobile Number");
-        mobileNum.focus();
-        return;
-    } else if (!mobilePattern.test(mobileNum.value.trim())) {
-        alert("Enter Valid Mobile Number");
-        mobileNum.focus();
-        return;
-    }
-
-    if (mobileToken.value.trim() === '') {
-        alert("Enter Your Mobile Token Number");
-        mobileToken.focus();
-        return;
-    } else if (!numberPattern.test(mobileToken.value.trim())) {
-        alert("Enter Valid Mobile Token Number");
-        mobileToken.focus();
-        return;
-    }
-
-    if (helmet.value.trim() === '') {
-        alert("Enter Your Helmet Number");
-        helmet.focus();
-        return;
-    } else if (!numberPattern.test(helmet.value.trim())) {
-        alert("Enter Valid Helmet Number");
-        helmet.focus();
-        return;
-    }
-
-    if (requestedName.value.trim() === '') {
-        alert("Enter Requested Person's Name");
-        requestedName.focus();
-        return;
-    } else if (!namePattern.test(requestedName.value.trim())) {
-        alert("Enter Valid Name");
-        requestedName.focus();
-        return;
-    }
-
-    let selectedOption = false;
-
-    for (let i = 0; i < purpose.length; i++) {
-        if (purpose[i].checked) {
-            selectedOption = true;
-            break;
-        }
-    }
-
-    if (!selectedOption) {
-        alert("Select Your Purpose Of Visit");
-        return;
-    }
 
     console.log("Everything is Valid!");
 
+    btn.value = "Generating Pass";
+    btn.classList.add("disabled");
+    spn.classList.remove("d-none");
+
     GatherData();
+}
+
+function imageToBase64(imageFile) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const base64String = reader.result.split(",")[1];
+            resolve(base64String);
+        };
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(imageFile);
+    });
+}
+
+function NeutralizeField(inp) {
+    inp.classList.remove("is-invalid");
+    inp.classList.remove("is-valid");
+}
+
+function validateTextField(inp) {
+    if (inp.value.trim() === '') {
+        inp.classList.add("is-invalid");
+        inp.focus();
+        return true;
+    } else {
+        inp.classList.add("is-valid");
+        return false;
+    }
+}
+
+function validatePatternField(inp, pattern) {
+    if (inp.value.trim() === '') {
+        inp.classList.add("is-invalid");
+        inp.focus();
+        return true;
+    } else if (!pattern.test(inp.value.trim())) {
+        inp.classList.add("is-invalid");
+        inp.focus();
+        return true;
+    } else {
+        inp.classList.add("is-valid");
+        return false;
+    }
 }

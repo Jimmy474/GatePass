@@ -1,4 +1,4 @@
-body {
+/*body {
     margin : 0;
     padding : 0;
 }
@@ -17,9 +17,9 @@ body {
 
 .Card2 {
     height: fit-content;
-    box-sizing: border-box;
+    box-sizing: border-box;*/
 /*    border : 2px solid;*/
-    margin : 0px;
+    /*margin : 0px;
     padding : var(--Default_Padding);
     display : flex;
     justify-content:space-around;
@@ -85,4 +85,4 @@ input[type=button]:hover {
 
 input[type=button]:active {
     box-shadow: var(--Primary-Color-Dark) 1px 1px;
-}
+}*/

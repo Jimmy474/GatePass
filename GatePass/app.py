@@ -25,23 +25,17 @@ def upload():
 @app.route('/Pass', methods=['POST'])
 def GeneratePass():
 
-    image_file = request.files['image']
-    filename = 'image.jpg'
-    filepath = os.path.join('static', 'Image', filename)
-
-    image_url = '/' + filepath
-
+    image_url = request.form.get('img_url')
     visitor_name = request.form.get('visitor_name')
     coming_from = request.form.get('coming_from')
     adhar_number = request.form.get('adhar_number')
     mobile_number = request.form.get('mobile_number')
     token_number = request.form.get('token_number')
     helmet_number = request.form.get('helmet_number')
-    requested_person = request.form.get('requested_person')
-    purpose = request.form.get('purpose')
+    requested_person = request.form.get('VisitTo')
+    purpose = request.form.get('PurposeOfVisit')
     time_in = datetime.now().strftime("%H:%M")
     current_date = datetime.now().strftime("%d/%m/%Y")
-
     pass_number = request.form.get('pass_number')
 
     return render_template('pass.html', image_url=image_url, 
@@ -57,6 +51,34 @@ def GeneratePass():
                            current_date=current_date,
                            pass_number=pass_number)
 
+@app.route('/SmallPass', methods=['POST'])
+def GenerateSmallPass():
+
+    image_url = request.form.get('img_url')
+    visitor_name = request.form.get('visitor_name')
+    coming_from = request.form.get('coming_from')
+    adhar_number = request.form.get('adhar_number')
+    mobile_number = request.form.get('mobile_number')
+    token_number = request.form.get('token_number')
+    helmet_number = request.form.get('helmet_number')
+    requested_person = request.form.get('VisitTo')
+    purpose = request.form.get('PurposeOfVisit')
+    time_in = datetime.now().strftime("%H:%M")
+    current_date = datetime.now().strftime("%d/%m/%Y")
+    pass_number = request.form.get('pass_number')
+
+    return render_template('MiniPass.html', image_url=image_url, 
+                           visitor_name=visitor_name, 
+                           coming_from=coming_from,
+                           adhar_number=adhar_number, 
+                           mobile_number=mobile_number,
+                           token_number=token_number,
+                           helmet_number=helmet_number,
+                           requested_person=requested_person, 
+                           purpose=purpose,
+                           time_in=time_in,
+                           current_date=current_date,
+                           pass_number=pass_number)
 
 if __name__ == '__main__':
     app.run()

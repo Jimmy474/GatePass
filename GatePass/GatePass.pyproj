@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="static\add.png" />
     <Content Include="static\css\styles.css" />
     <Content Include="static\css\Stylesheet_Pass.css" />
     <Content Include="static\css\Variables.css" />
