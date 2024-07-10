@@ -1,19 +1,97 @@
+window.jsPDF = window.jspdf.jsPDF;
+
 function SelectImage() {
     const imageInput = document.getElementById('imageInput');
     imageInput.click();
 }
 
+//function changeImage() {
+//    const imageInput = document.getElementById('imageInput');
+//    const file = imageInput.files[0];
+
+//    console.dir(file);
+//    if (file.type.indexOf("image/") > -1) {
+//        let img = document.getElementById("user_img");
+//        img.src = window.URL.createObjectURL(file);
+//        reder.readAsDataURL(cropImageToSquare(img));
+//        document.getElementById("img_url").value = img.src;
+//        console.log(document.getElementById("img_url").value);
+//    }
+//}
+
 function changeImage() {
     const imageInput = document.getElementById('imageInput');
     const file = imageInput.files[0];
 
-    console.dir(file);
     if (file.type.indexOf("image/") > -1) {
-        let img = document.getElementById("user_img");
-        img.src = window.URL.createObjectURL(file);
-        document.getElementById("img_url").value = img.src;
-        console.log(document.getElementById("img_url").value);
+        const img = document.getElementById("user_img");
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imgData = e.target.result;
+
+            // Create a temporary image element
+            const tempImg = new Image();
+            tempImg.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Set the canvas size to the square size (1:1 aspect ratio)
+                const size = Math.min(tempImg.width, tempImg.height);
+                canvas.width = size;
+                canvas.height = size;
+
+                // Calculate the cropping position
+                const x = (tempImg.width - size) / 2;
+                const y = (tempImg.height - size) / 2;
+
+                // Draw the cropped image onto the canvas
+                ctx.drawImage(tempImg, x, y, size, size, 0, 0, size, size);
+
+                // Get the data URL of the cropped image
+                const croppedImgData = canvas.toDataURL('image/jpeg');
+
+                // Set the cropped image as the source of the image element
+                img.src = croppedImgData;
+
+                // Store the cropped image data URL
+                document.getElementById("img_url").value = croppedImgData;
+            };
+
+            // Set the temporary image source to the uploaded image data
+            tempImg.src = imgData;
+        };
+
+        // Read the uploaded image data as a data URL
+        reader.readAsDataURL(file);
     }
+}
+
+function cropImageToSquare(imageElement) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const originalWidth = imageElement.naturalWidth;
+    const originalHeight = imageElement.naturalHeight;
+
+    const size = Math.min(originalWidth, originalHeight);
+
+    canvas.width = size;
+    canvas.height = size;
+
+    const x = (originalWidth - size) / 2;
+    const y = (originalHeight - size) / 2;
+
+    ctx.drawImage(imageElement, 0, 0, size, size, 0, 0, size, size);
+
+    const croppedDataURL = canvas.toDataURL();
+
+    return croppedDataURL;
+}
+
+
+function changeLink(link) {
+    document.getElementById('VideoFrame').src = link;
 }
 
 function formatNumber(input) {

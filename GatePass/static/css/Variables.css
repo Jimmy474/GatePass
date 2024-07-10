@@ -8,3 +8,39 @@
     --Default_Margin: 10px;
     --Default_Padding: 10px;
 }
+
+.Delay-000 {
+    animation-delay: 0s !important;
+}
+
+.Delay-025 {
+    animation-delay: 0.25s !important;
+}
+
+.Delay-050 {
+    animation-delay: 0.5s !important;
+}
+
+.Delay-075 {
+    animation-delay: 0.75s !important;
+}
+
+.Delay-100 {
+    animation-delay: 1s !important;
+}
+
+.Delay-125 {
+    animation-delay: 1.25s !important;
+}
+
+.Delay-150 {
+    animation-delay: 1.5s !important;
+}
+
+.Delay-175 {
+    animation-delay: 1.75s !important;
+}
+
+.Delay-200 {
+    animation-delay: 2s !important;
+}

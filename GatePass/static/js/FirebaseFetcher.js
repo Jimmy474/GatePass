@@ -70,6 +70,10 @@ var pn = 0;
 const btn = document.getElementById("GenerateButton");
 const spn = document.getElementById("Spinner");
 
+if (window.location.pathname === '/SmallPass') {
+    FirestoreFetch();
+}
+
 function UpdatePassNumber() {
     const dbRef = ref(db, 'GatePassNumber/');
 
@@ -118,21 +122,23 @@ function GatherData() {
 
 function FirestoreFetch() {
 
+
     const pass_number = document.getElementById("pass_number").textContent;
 
     const storageRef = refStorage(storage, "Visitor Images/Pass-" + pass_number + ".jpg");
     getDownloadURL(storageRef).then(url => {
         document.getElementById("user_img").setAttribute('src', url);
+        document.getElementById("user_img").classList.remove("placeholder");
     }).catch(e => { console.log(e); });
 
-    const RefToPass = doc(collection(dbF, "Visitors"), "Pass-" + pass_number).withConverter(PassConverter);
-    getDoc(RefToPass)
-        .then((snapshot) => {
-            const pass = snapshot.data();
-            console.log(pass);
-        }).catch(e => {
-            console.log(e);
-        });
+    //const RefToPass = doc(collection(dbF, "Visitors"), "Pass-" + pass_number).withConverter(PassConverter);
+    //getDoc(RefToPass)
+    //    .then((snapshot) => {
+    //        const pass = snapshot.data();
+    //        console.log(pass);
+    //    }).catch(e => {
+    //        console.log(e);
+    //    });
 }
 
 function UploadVisitorData() {
@@ -179,8 +185,65 @@ function UploadVisitorImage() {
         spn.classList.add("d-none");
     });
 }
+function generatePDF() {
+
+    const btn = document.getElementById("GeneratePdfButton");
+    const spn = document.getElementById("Spinner");
+
+    btn.value = "Generating PDF";
+    btn.classList.add("disabled");
+    spn.classList.remove("d-none");
+
+    var doc = new jsPDF({
+        unit: 'in',
+        format: [2.63, 3.88] // Width: 85mm, Height: 54mm
+    });
+
+    var cards = document.getElementsByClassName('Pass');
+    var totalPages = cards.length;
+    var currentPage = 1;
+
+    function addPageContent() {
+        var card = cards[currentPage - 1];
+
+        html2canvas(card, {
+            scale: 5,
+            useCORS: true,
+            allowTaint: true
+        }).then(function (canvas) {
+            doc.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 2.63,3.88);
+
+            if (currentPage < totalPages) {
+                doc.addPage();
+                currentPage++;
+                addPageContent();
+            } else {
+                // Generate the PDF blob
+                var pdfBlob = doc.output('blob');
+
+                // Create a URL for the blob
+                var pdfURL = URL.createObjectURL(pdfBlob);
+
+                btn.value = "Print Pass";
+                btn.classList.remove("disabled");
+                spn.classList.add("d-none");
+
+                // Open the PDF in a new tab/window
+                window.open(pdfURL, '_blank');
+
+                // Release the URL object after opening
+                URL.revokeObjectURL(pdfURL);
+            }
+        });
+    }
+
+    addPageContent();
+
+}
+
 
 window.GatherData = GatherData;
 window.UpdatePassNumber = UpdatePassNumber;
 window.UploadVisitorData = UploadVisitorData;
 window.FirestoreFetch = FirestoreFetch;
+window.generatePDF = generatePDF;
